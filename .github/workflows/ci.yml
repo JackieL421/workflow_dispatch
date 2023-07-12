@@ -1,0 +1,17 @@
+name: Windows 2016
+
+# Controls when the action will run.
+on:
+  push:
+    branches: [ main, Feature]
+    paths:
+    - .github/workflows/ci.yml
+    # - 'windows-2016/**'
+  workflow_dispatch: 
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test Build
+        run:  make docker/make TARGET=windows-server-2016-standard/build
